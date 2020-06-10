@@ -1,10 +1,12 @@
 import React from 'react';
 
 import { startEngine } from '../engine';
+import { CANVAS_SCALE } from '../constants';
 
 
 class Renderer extends React.Component {
     canvasId = "canvas"
+    canvasRef: React.RefObject<HTMLCanvasElement>
 
     componentDidMount() {
         startEngine(this.canvasId)
@@ -14,7 +16,17 @@ class Renderer extends React.Component {
         const { width, height } = getWindowDimensions()
 
         return (
-            <canvas width={width} height={height} id={this.canvasId} />
+            <canvas
+                id={this.canvasId}
+                ref={this.canvasRef}
+                width={`${width * CANVAS_SCALE}px`}
+                height={`${height * CANVAS_SCALE}px`}
+                style={{
+                    width: `${width}px`,
+                    height: `${height}px`,
+                }}
+
+            />
         );
     }
 }
@@ -22,9 +34,9 @@ class Renderer extends React.Component {
 function getWindowDimensions() {
     const { innerWidth: width, innerHeight: height } = window;
     return {
-      width,
-      height
+        width,
+        height
     };
-  }
+}
 
 export default Renderer;

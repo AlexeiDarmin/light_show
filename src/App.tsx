@@ -17,11 +17,11 @@ class App extends React.Component {
     const { isHidden } = this.state
     return (
       <div className="App">
-        <header className={`App-header Force-top ${isHidden ? 'hidden' : null}`}>
+        {/* <header className={`App-header Force-top ${isHidden ? 'hidden' : null}`}>
           <p>
             A visualization
           </p>
-        </header>
+        </header> */}
         <Renderer />
       </div>
     );
